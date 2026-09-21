@@ -1,0 +1,157 @@
+[
+   {
+      "slug": "conways-law",
+      "name": "Conway’s Law",
+      "kind": "Law",
+      "statement": "The shape of your organization shows up in the shape of your software.",
+      "explanation": "Systems tend to reflect the communication structures of the organizations that design them. Team boundaries, ownership, and the ease of talking to one another all influence architectural boundaries. When a design keeps fighting the organization, reconsider the team structure as well as the code.",
+      "category": "Organizations",
+      "aliases": [
+         "Conway Law",
+         "Mel Conway"
+      ],
+      "references": [
+         {
+            "title": "How Do Committees Invent? — Melvin E. Conway",
+            "url": "https://www.melconway.com/research/committees.html"
+         }
+      ]
+   },
+   {
+      "slug": "ninety-ninety-rule",
+      "name": "Ninety-Ninety Rule",
+      "kind": "Rule",
+      "statement": "The first 90% takes 90% of the time. Finishing the rest takes another 90%.",
+      "explanation": "This joke about estimation is attributed to Tom Cargill and was popularized by Jon Bentley. Visible progress is a poor measure of remaining effort: integration, edge cases, testing, and release work often arrive late. Treat “almost done” as a prompt to list what remains, not as a reliable forecast.",
+      "category": "Planning",
+      "aliases": [
+         "Ninety Ninety Law",
+         "90-90 rule",
+         "90/90",
+         "Tom Cargill",
+         "Rule of Credibility",
+         "90/10"
+      ],
+      "references": [
+         {
+            "title": "Ninety-Ninety Rule — The Jargon File",
+            "url": "https://catb.org/jargon/html/N/Ninety-Ninety-Rule.html"
+         }
+      ]
+   },
+   {
+      "slug": "hyrums-law",
+      "name": "Hyrum’s Law",
+      "kind": "Law",
+      "statement": "Given enough users, every observable behavior becomes somebody’s dependency.",
+      "explanation": "An API’s written contract is not the whole contract its users experience. Output ordering, timing, error messages, and other incidental details may become assumptions in downstream systems. Changing an undocumented behavior can still break a real consumer; plan compatibility work around actual usage.",
+      "category": "API design",
+      "aliases": [
+         "Hyrum Wright",
+         "Law of implicit interfaces",
+         "compatibility"
+      ],
+      "references": [
+         {
+            "title": "Hyrum’s Law — Hyrum Wright",
+            "url": "https://www.hyrumslaw.com/"
+         }
+      ]
+   },
+   {
+      "slug": "law-of-leaky-abstractions",
+      "name": "Law of Leaky Abstractions",
+      "kind": "Law",
+      "statement": "An abstraction can hide complexity, but it cannot make the underlying system disappear.",
+      "explanation": "Joel Spolsky describes how substantial abstractions inevitably expose some details of the systems beneath them. A database query still has a cost; a network call can still fail. Abstractions help us work, but debugging their failures often requires understanding the layer they hide.",
+      "category": "Complexity",
+      "aliases": [
+         "Joel Spolsky",
+         "leaky abstraction"
+      ],
+      "references": [
+         {
+            "title": "The Law of Leaky Abstractions — Joel Spolsky",
+            "url": "https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/"
+         }
+      ]
+   },
+   {
+      "slug": "yagni",
+      "name": "YAGNI",
+      "kind": "Principle",
+      "statement": "Build the capability you need now, when you have evidence that you need it.",
+      "explanation": "“You Aren’t Gonna Need It” comes from Extreme Programming. Speculative features carry implementation and maintenance costs even if nobody uses them. This principle does not argue against refactoring, testing, or keeping code easy to change; those practices make it cheaper to add the right capability later.",
+      "category": "Design",
+      "aliases": [
+         "You aren't gonna need it",
+         "You are not going to need it",
+         "simple design"
+      ],
+      "references": [
+         {
+            "title": "Yagni — Martin Fowler",
+            "url": "https://martinfowler.com/bliki/Yagni.html"
+         }
+      ]
+   },
+   {
+      "slug": "blub-paradox",
+      "name": "Blub Paradox",
+      "kind": "Paradox",
+      "statement": "The tools you know shape which improvements you can recognize.",
+      "explanation": "Paul Graham uses the fictional language Blub to describe a blind spot: programmers can readily notice missing features in less expressive tools, yet may not recognize the value of unfamiliar capabilities in other tools. Learning a different programming model can change how you judge the one you already use.",
+      "category": "Learning",
+      "aliases": [
+         "Paul Graham",
+         "programming languages"
+      ],
+      "references": [
+         {
+            "title": "Beating the Averages — Paul Graham",
+            "url": "https://www.paulgraham.com/avg.html"
+         }
+      ]
+   },
+   {
+      "slug": "two-hard-things",
+      "name": "Two Hard Things",
+      "kind": "Aphorism",
+      "statement": "Keeping cached data correct and giving things good names are deceptively hard problems.",
+      "explanation": "This aphorism is attributed to Phil Karlton. Cache invalidation asks when a saved answer stops being true. Naming asks which concept a piece of software actually represents. Both become harder as a system evolves, because assumptions that once seemed obvious no longer hold.",
+      "category": "Design",
+      "aliases": [
+         "Phil Karlton",
+         "cache invalidation",
+         "naming things"
+      ],
+      "references": [
+         {
+            "title": "Two Hard Things — Martin Fowler",
+            "url": "https://martinfowler.com/bliki/TwoHardThings.html"
+         }
+      ]
+   },
+   {
+      "slug": "postels-law",
+      "name": "Postel’s Law",
+      "kind": "Principle",
+      "statement": "Send carefully formed messages, and be tolerant of what you receive.",
+      "explanation": "The robustness principle appears in early Internet protocol specifications. Tolerating variation can aid interoperability, but silently accepting malformed input can also create ambiguity and hide defects. Apply it with care: modern protocol guidance warns that tolerance can make an ecosystem harder to evolve.",
+      "category": "API design",
+      "aliases": [
+         "Jon Postel",
+         "robustness principle"
+      ],
+      "references": [
+         {
+            "title": "RFC 793, section 2.10 — Robustness Principle",
+            "url": "https://www.rfc-editor.org/rfc/rfc793#section-2.10"
+         },
+         {
+            "title": "RFC 9413 — Maintaining Robust Protocols",
+            "url": "https://www.rfc-editor.org/rfc/rfc9413.html"
+         }
+      ]
+   }
+]

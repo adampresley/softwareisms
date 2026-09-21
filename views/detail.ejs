@@ -1,0 +1,51 @@
+<%- include('partials/head') %>
+
+<main id="main" class="shell detail">
+  <a href="/" class="back-link">← Back to the collection</a>
+
+  <article>
+    <div class="detail-labels flex items-center gap-3">
+      <span class="category"><%= ism.category %></span
+      ><span class="eyebrow"><%= ism.kind %></span>
+    </div>
+
+    <h1><%= ism.name %></h1>
+
+    <p class="detail-statement"><%= ism.statement %></p>
+    <p class="paraphrase-note">
+      A plain-language paraphrase. Original sources below.
+    </p>
+
+    <section class="detail-section">
+      <h2>The idea behind it</h2>
+      <p><%= ism.explanation %></p>
+    </section>
+
+    <section class="detail-section references">
+      <h2>Go to the source</h2>
+
+      <ul>
+        <% for(const reference of ism.references) { %>
+        <li>
+          <a href="<%= reference.url %>" rel="external"
+            ><span><%= reference.title %></span
+            ><span aria-hidden="true">↗</span></a
+          >
+        </li>
+        <% } %>
+      </ul>
+    </section>
+
+    <% if(ism.aliases.length) { %>
+    <section class="detail-section">
+      <h2>Also searchable by</h2>
+
+      <div class="aliases flex flex-wrap gap-2">
+        <% for(const alias of ism.aliases) { %><span><%= alias %></span><% } %>
+      </div>
+    </section>
+    <% } %>
+  </article>
+</main>
+
+<%- include('partials/footer') %>

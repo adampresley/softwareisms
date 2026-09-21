@@ -1,0 +1,161 @@
+<%- include('partials/head') %>
+
+<main id="main" class="shell">
+  <section class="hero" aria-labelledby="featured-statement">
+    <div class="eyebrow flex items-center justify-center gap-2">
+      <span class="amber-dot"></span> HERE'S AN 'ISM FOR YOU
+    </div>
+
+    <h1 id="featured-statement"><%= featured.statement %></h1>
+    <a class="hero-attribution" href="/isms/<%= featured.slug %>"
+      ><%= featured.name %>
+      <span aria-hidden="true">↗</span></a
+    >
+
+    <p class="hero-caption">Laws, principles, and general software "isms".</p>
+  </section>
+
+  <section class="collection" aria-labelledby="collection-title">
+    <div class="collection-heading flex items-center justify-between gap-4">
+      <h2 id="collection-title">The collection</h2>
+      <span class="eyebrow"><%= catalogTotal %> ISMs & COUNTING</span>
+    </div>
+
+    <form
+      class="search-form flex gap-3"
+      action="/"
+      method="get"
+      role="search"
+      hx-get="/"
+      hx-target="#results"
+      hx-select="#results"
+      hx-swap="outerHTML"
+      hx-push-url="true"
+      hx-sync="closest .collection:replace"
+      hx-disabled-elt="find button"
+    >
+      <label class="sr-only" for="search">Search isms</label>
+      <div class="search-input-wrap">
+        <span aria-hidden="true" class="search-icon">⌕</span
+        ><input
+          id="search"
+          name="q"
+          type="search"
+          maxlength="200"
+          value="<%= query %>"
+          placeholder="Find an 'ism'. Search names, concepts, or keywords…"
+          autocomplete="off"
+        />
+      </div>
+
+      <button type="submit" class="button-primary">
+        Search <span aria-hidden="true">↗</span>
+      </button>
+    </form>
+
+    <p id="request-error" class="request-error" role="alert" hidden>
+      Couldn’t load those results. Please try again.
+    </p>
+
+    <div id="results">
+      <div class="results-meta flex items-center justify-between gap-3">
+        <p role="status">
+          <%= total %> <%= total === 1 ? 'ism' : 'isms' %><% if(query) { %>
+          matching “<%= query %>”<% } else { %> to explore<% } %>
+        </p>
+
+        <% if(query) { %><a
+          href="/"
+          hx-get="/"
+          hx-target="#results"
+          hx-select="#results"
+          hx-swap="outerHTML"
+          hx-push-url="true"
+          hx-sync="closest .collection:replace"
+          data-clear-search
+          >Clear search <span aria-hidden="true">×</span></a
+        ><% } else { %><span>Alphabetically, A–Z</span><% } %>
+      </div>
+
+      <% if(total) { %>
+      <div class="table-frame">
+        <table>
+          <caption class="sr-only">
+            Software isms and their statements
+          </caption>
+
+          <thead>
+            <tr>
+              <th scope="col">NAME</th>
+              <th scope="col">THE IDEA</th>
+            </tr>
+          </thead>
+
+          <tbody id="ism-rows">
+            <% for(const ism of matches) { %>
+            <tr class="ism-row" data-href="/isms/<%= ism.slug %>">
+              <th scope="row">
+                <a href="/isms/<%= ism.slug %>"
+                  ><%= ism.name %><span aria-hidden="true">↗</span></a
+                >
+              </th>
+              <td><%= ism.statement %></td>
+            </tr>
+            <% } %>
+            <% if(page < pages) { %>
+            <tr
+              class="pagination-row"
+              hx-get="<%= pageUrl(page + 1) %>"
+              hx-trigger="revealed"
+              hx-target="this"
+              hx-select="#ism-rows > tr"
+              hx-swap="outerHTML"
+              hx-sync="closest .collection:abort"
+            >
+              <td colspan="2">
+                <a
+                  class="load-more"
+                  href="<%= pageUrl(page + 1) %>"
+                  hx-get="<%= pageUrl(page + 1) %>"
+                  hx-target="closest tr"
+                  hx-select="#ism-rows > tr"
+                  hx-swap="outerHTML"
+                  hx-sync="closest .collection:abort"
+                  >Load more <span aria-hidden="true">↓</span></a
+                >
+              </td>
+            </tr>
+            <% } else { %>
+            <tr class="end-row">
+              <td colspan="2">
+                You’ve reached the end. A good idea is worth a second look.
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <% if(page > 1) { %>
+      <nav class="page-navigation" aria-label="Pagination">
+        <a href="<%= pageUrl(page - 1) %>">← Previous page</a
+        ><span
+          >Page
+          <%= page %>
+          of
+          <%= pages %></span
+        >
+      </nav>
+      <% } %>
+      <% } else { %>
+      <div class="empty-state">
+        <span class="empty-mark" aria-hidden="true">∅</span>
+        <h3>No isms found.</h3>
+        <p>Try a broader idea, like “design,” “planning,” or “complexity.”</p>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
