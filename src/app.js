@@ -28,7 +28,18 @@ app.get('/', (req, res) => {
    const pageUrl = number => `/?${new URLSearchParams({ ...(query ? { q: query } : {}), ...(number > 1 ? { page: String(number) } : {}) })}`;
 
    res.set('Cache-Control', 'no-store');
-   res.render('index', { title: 'Softwareisms — A field guide to building software', description: 'Discover the laws, principles, and occasional uncomfortable truths of building software.', query, matches: matches.slice((page - 1) * pageSize, page * pageSize), total: matches.length, catalogTotal: catalog.length, page, pages, pageUrl, featured: randomIsm() });
+   res.render('index', {
+      title: 'Softwareisms — A field guide to building software',
+      description: 'Discover the laws, principles, and occasional uncomfortable truths of building software.',
+      query,
+      matches: matches.slice((page - 1) * pageSize, page * pageSize),
+      total: matches.length,
+      catalogTotal: catalog.length,
+      page,
+      pages,
+      pageUrl,
+      featured: randomIsm()
+   });
 });
 
 app.get('/isms/:slug', (req, res, next) => {
